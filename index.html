@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manya Singh</title>
+
+<title>Manya Singh | AI Cyberpunk System</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
 
@@ -12,23 +13,11 @@
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-background:#050505;
+background:#030303;
 color:white;
 font-family:'Space Grotesk',sans-serif;
 overflow-x:hidden;
 cursor:none;
-}
-
-/* CUSTOM CURSOR */
-.cursor{
-width:15px;
-height:15px;
-border:2px solid #00f7ff;
-border-radius:50%;
-position:fixed;
-pointer-events:none;
-z-index:9999;
-box-shadow:0 0 10px #00f7ff;
 }
 
 /* GRID */
@@ -39,57 +28,44 @@ width:100%;
 height:100%;
 background:
 linear-gradient(rgba(0,255,255,0.05) 1px, transparent 1px),
-linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px);
-background-size:40px 40px;
-z-index:-1;
+linear-gradient(90deg, rgba(255,0,255,0.05) 1px, transparent 1px);
+background-size:50px 50px;
+z-index:-2;
 }
 
-/* SCANLINES */
-body::after{
-content:"";
+/* PARALLAX */
+.parallax{
+transform-style:preserve-3d;
+transition:transform 0.1s;
+}
+
+/* CURSOR */
+.cursor{
+width:12px;height:12px;
+border:2px solid #00f7ff;
+border-radius:50%;
 position:fixed;
-width:100%;
-height:100%;
-background:repeating-linear-gradient(
-to bottom,
-rgba(255,255,255,0.02) 0px,
-rgba(255,255,255,0.02) 1px,
-transparent 1px,
-transparent 3px
-);
 pointer-events:none;
+z-index:9999;
+box-shadow:0 0 15px #00f7ff;
 }
 
 /* NAV */
 nav{
 position:fixed;
-width:100%;
-display:flex;
-justify-content:space-between;
-padding:20px 50px;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(10px);
+left:20px;
+top:50%;
+transform:translateY(-50%);
 z-index:1000;
 }
 
-nav h1{
-color:#00f7ff;
-letter-spacing:3px;
-text-shadow:0 0 10px #00f7ff;
-}
-
-nav ul{
-display:flex;
-gap:25px;
-list-style:none;
-}
-
-nav ul li{
+nav li{
+margin:20px 0;
 cursor:pointer;
 transition:0.3s;
 }
 
-nav ul li:hover{
+nav li:hover{
 color:#ff00ff;
 text-shadow:0 0 10px #ff00ff;
 }
@@ -98,121 +74,59 @@ text-shadow:0 0 10px #ff00ff;
 .hero{
 height:100vh;
 display:flex;
-flex-direction:column;
 justify-content:center;
-padding-left:10%;
+align-items:center;
+flex-direction:column;
 }
 
 .hero h1{
-font-size:5rem;
-text-shadow:0 0 30px #00f7ff;
-animation:glitch 2s infinite;
-}
-
-@keyframes glitch{
-0%{text-shadow:2px 2px #ff00ff}
-50%{text-shadow:-2px -2px #00f7ff}
-100%{text-shadow:2px 2px #ff00ff}
-}
-
-/* TERMINAL */
-.terminal{
-margin-top:20px;
-border:1px solid #00f7ff;
-padding:20px;
-width:60%;
-background:rgba(0,0,0,0.5);
-box-shadow:0 0 20px #00f7ff;
+font-size:4rem;
+text-shadow:0 0 25px #00f7ff;
 }
 
 /* BUTTONS */
-.buttons{margin-top:30px}
-
 .btn{
 padding:12px 25px;
-margin-right:15px;
-border:1px solid;
-cursor:pointer;
-transition:0.3s;
+margin:10px;
+border:1px solid #00f7ff;
 background:none;
+color:#00f7ff;
+cursor:pointer;
+transition:0.2s;
 }
 
 .btn:hover{
-transform:scale(1.1);
+background:#00f7ff;
+color:black;
 }
 
-.btn-cyan{border-color:#00f7ff;color:#00f7ff}
-.btn-cyan:hover{background:#00f7ff;color:black}
-
-.btn-pink{border-color:#ff00ff;color:#ff00ff}
-.btn-pink:hover{background:#ff00ff}
-
-.btn-red{border-color:#ff004c;color:#ff004c}
-.btn-red:hover{background:#ff004c}
-
-/* SECTION */
-section{padding:120px 10%}
-
-/* CARD */
+/* GLASS */
 .card{
-border:1px solid #8a2be2;
-padding:40px;
-background:linear-gradient(135deg, rgba(0,255,255,0.05), rgba(255,0,255,0.05));
-box-shadow:0 0 40px rgba(255,0,255,0.2);
-}
-
-/* SKILLS */
-.skills{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:30px;
-}
-
-.skill-box{
-border:1px solid #00f7ff;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(15px);
+border:1px solid rgba(0,255,255,0.2);
 padding:30px;
-transition:0.3s;
+margin:30px;
 }
 
-.skill-box:hover{
-box-shadow:0 0 25px #00f7ff;
-transform:translateY(-10px);
+/* AI PANEL */
+.ai-box{
+position:fixed;
+bottom:20px;
+right:20px;
+width:250px;
+background:#000;
+border:1px solid #00f7ff;
+padding:15px;
 }
 
-/* PROJECTS */
-.projects{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
-
-.project{
-border:1px solid #ff00ff;
-padding:25px;
-transition:0.3s;
-}
-
-.project:hover{
-transform:rotateX(10deg) rotateY(10deg);
-box-shadow:0 0 25px #ff00ff;
-}
-
-/* INPUT */
-input,textarea{
+.ai-box input{
 width:100%;
-padding:10px;
-margin:10px 0;
-background:transparent;
+padding:8px;
+background:black;
 border:1px solid #00f7ff;
 color:white;
 }
-
-input:focus,textarea:focus{
-outline:none;
-box-shadow:0 0 10px #00f7ff;
-}
-
-html{scroll-behavior:smooth}
 
 </style>
 </head>
@@ -221,66 +135,43 @@ html{scroll-behavior:smooth}
 
 <div class="cursor" id="cursor"></div>
 
+<!-- NAV -->
 <nav>
-<h1>MANYA SINGH</h1>
 <ul>
+<li onclick="go('home')">HOME</li>
 <li onclick="go('profile')">PROFILE</li>
-<li onclick="go('skills')">ABILITIES</li>
-<li onclick="go('projects')">MISSIONS</li>
 <li onclick="go('contact')">CONTACT</li>
 </ul>
 </nav>
 
-<section class="hero">
+<!-- HERO -->
+<section class="hero parallax" id="home">
 <h1>MANYA SINGH</h1>
+<p id="typing"></p>
 
-<div class="terminal">
-<span style="color:#00f7ff">C:\></span>
-<span id="typing"></span>
-</div>
-
-<div class="buttons">
-<button class="btn btn-cyan" onclick="go('profile')">ENTER SYSTEM</button>
-<button class="btn btn-pink" onclick="go('contact')">CONTACT</button>
-<button class="btn btn-red">DOWNLOAD RESUME</button>
-</div>
+<button class="btn">ENTER SYSTEM</button>
+<button class="btn">CONTACT</button>
 </section>
 
+<!-- PROFILE -->
 <section id="profile">
 <div class="card">
 <h2>PROFILE</h2>
-<p>CS student passionate about data, ML & interactive systems.</p>
+<p>CS student exploring data, AI & interactive systems.</p>
 </div>
 </section>
 
-<section id="skills">
-<h2 style="color:#00f7ff">SKILLS</h2>
-<div class="skills">
-<div class="skill-box"><h3>Programming</h3><p>Python, JS, HTML, CSS</p></div>
-<div class="skill-box"><h3>Tools</h3><p>VS Code, Jupyter, Excel</p></div>
+<!-- AI ASSISTANT -->
+<div class="ai-box">
+<p>AI Assistant</p>
+<input placeholder="Ask something..." onkeydown="reply(event)">
+<div id="ai-response"></div>
 </div>
-</section>
-
-<section id="projects">
-<h2 style="color:#ff00ff">MISSIONS</h2>
-<div class="projects">
-<div class="project"><h3>Say No To Mouse</h3></div>
-<div class="project"><h3>Steganography System</h3></div>
-</div>
-</section>
-
-<section id="contact">
-<h2 style="color:#00f7ff">CONTACT</h2>
-<input placeholder="Name">
-<input placeholder="Email">
-<textarea placeholder="Message"></textarea>
-<button class="btn btn-cyan">Send</button>
-</section>
 
 <script>
 
 /* typing */
-const text="Initializing Profile...";
+const text="Initializing system...";
 let i=0;
 function type(){
 if(i<text.length){
@@ -290,17 +181,38 @@ setTimeout(type,40);
 }}
 type();
 
-/* scroll */
-function go(id){
-document.getElementById(id).scrollIntoView();
-}
-
 /* cursor */
 const cursor=document.getElementById("cursor");
 document.addEventListener("mousemove",(e)=>{
 cursor.style.left=e.clientX+"px";
 cursor.style.top=e.clientY+"px";
 });
+
+/* parallax */
+document.addEventListener("mousemove",(e)=>{
+let x=(window.innerWidth/2 - e.clientX)/50;
+let y=(window.innerHeight/2 - e.clientY)/50;
+document.querySelectorAll(".parallax").forEach(el=>{
+el.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
+});
+});
+
+/* scroll */
+function go(id){
+document.getElementById(id).scrollIntoView();
+}
+
+/* fake AI */
+function reply(e){
+if(e.key==="Enter"){
+let val=e.target.value.toLowerCase();
+let res="System ready.";
+if(val.includes("skills")) res="You have strong data & dev skills.";
+if(val.includes("project")) res="Check missions section.";
+document.getElementById("ai-response").innerText=res;
+e.target.value="";
+}
+}
 
 </script>
 
